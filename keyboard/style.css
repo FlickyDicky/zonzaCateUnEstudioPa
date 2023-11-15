@@ -23,6 +23,7 @@ body {
   word-wrap: break-word;
   overflow: hidden;
   white-space: pre-wrap;
+  overflow-y: auto;
 }
 
 .keyboard {
