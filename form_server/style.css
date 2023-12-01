@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+:root {
+    --backgroud-color: rgb(231, 231, 231);
+}
+
+body {
+    background: var(--backgroud-color);
+}
+
+h1 {
+    padding-bottom: 1em;
+}
+
+form {
+    background: var(--backgroud-color);
+    border: 3px solid rgb(114, 168, 250);
+    border-radius: 1em;
+    padding: 2em;
+    width: 50vw;
+    margin: 1em auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 5px rgb(173, 173, 173);
+}
+
+form h1 {
+    align-self: center;
+}
+
+input {
+    padding: 8px 16px;
+    margin: 6px auto;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    outline: none !important;
+}
+
+input.valid {
+    border-color: rgb(0, 219, 0);
+}
+
+input + p {
+    opacity: 0;
+    height: 0;
+}
+
+input.invalid + p {
+    opacity: 1;
+    height: auto;
+    margin-bottom: .5em;
+    color: red;
+}
+
+input.invalid {
+    border-color: red;
+}
+
+input[type="submit"], input[type="button"] {
+    cursor: pointer;
+}
+
+input:disabled {
+    cursor: auto;
+}
