@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Ryan",
+        "surname": "Lopez Perez",
+        "dni": "12345678X",
+        "date": "22/09/2000",
+        "cp": "35500",
+        "mail": "pepe@gmail.com",
+        "phone": "928666666",
+        "mobile": "666999666",
+        "iban": "ES7921000813610123456789",
+        "card": "4539955085883327",
+        "password": "hola1234567@",
+        "password2": "hola1234567@"
+    }
+]
