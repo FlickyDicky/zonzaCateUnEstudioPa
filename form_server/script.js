@@ -67,7 +67,7 @@ function validatePassword(password, repeatedPassword) {
 }
 
 // save the input data to an array and in localStorage
-function save() {
+function saveLocal() {
     let data = [];
     inputs.forEach((input) => {
         data.push(input.value);
@@ -79,17 +79,40 @@ function save() {
 function getUserLocalstorage() {
     let i = 0;
     let data = JSON.parse(localStorage.getItem("credentials"));
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
         input.value = data[i];
         i++;
     });
 
     // revalidate when retrieving the data
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
         validate(input, regEx[input.name]);
         validatePassword(password.value, passwordRepeat.value);
         enableButton();
     });
+}
+
+// Retrieve the data
+function insertDataInInput(userData) {
+    let i = 0;
+    inputs.forEach((input) => {
+        input.value = userData[i];
+        validate(input, regEx[input.name]);
+        i++;
+        // revalidate passwords when retrieving the data
+        setTimeout(() => {
+            validatePassword(password.value, passwordRepeat.value);
+            enableButton();
+        }, 10);
+    });
+}
+
+// send request
+function sendRequest(request) {
+    request.send();
+    request.onerror = function () {
+        console.log("Connection error");
+    };
 }
 
 // retrieve the data from our user.json file
@@ -100,48 +123,46 @@ function getUserJson() {
         if (newRequest.status >= 200 && newRequest.status < 400) {
             const ourData = JSON.parse(newRequest.responseText);
             let userData = Object.values(ourData[0]);
-            let i = 0;
-            inputs.forEach((input) => {
-                input.value = userData[i];
-                validate(input, regEx[input.name]);
-                i++;
-                // revalidate when retrieving the data
-                setTimeout(() => {
-                    validatePassword(password.value, passwordRepeat.value);
-                    enableButton();
-                }, 10);
-            });
-        } else {
-            console.log(
-                "We connected to the server, but it returned an error."
-            );
+            insertDataInInput(userData);
         }
     };
-    newRequest.send();
-    newRequest.onerror = function () {
-        console.log("Connection error");
-    };
+    sendRequest(newRequest);
 }
+
+// retrieve the data from our user.php file
 function getUserPhp() {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "http://etilico.com/user.php", true);
-    xmlhttp.onreadystatechange = function () {
+    let newRequest = new XMLHttpRequest();
+    newRequest.open("GET", "http://etilico.com/user.php", true);
+    newRequest.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const myObj = JSON.parse(this.responseText);
+            let userData = Object.values(myObj);
+            insertDataInInput(userData);
+        }
+    };
+    sendRequest(newRequest);
+}
+
+
+// get user from userdb.php from a databse
+
+function getUserDb(dni) {
+    if (dni == "") {
+        document.querySelector(".warning").innerHTML = "You must insert an ID";
+        return;
+    }
+    document.querySelector(".warning").innerHTML = "";
+    let newRequest = new XMLHttpRequest();
+    newRequest.open("GET", "http://etilico.com/userdb.php?q=" + dni, true);
+    newRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
             const myObj = JSON.parse(this.responseText);
-            let ourData = Object.values(myObj);
-            let i = 0;
-            inputs.forEach((input) => {
-                input.value = ourData[i];
-                validate(input, regEx[input.name]);
-                i++;
-                // revalidate when retrieving the data
-                setTimeout(() => {
-                    validatePassword(password.value, passwordRepeat.value);
-                    enableButton();
-                }, 10);
-            });
+            let userData = Object.values(myObj);
+            insertDataInInput(userData);
+        } else {
+            console.log("No funciona");
         }
     };
-    xmlhttp.send();
+    sendRequest(newRequest);
 }

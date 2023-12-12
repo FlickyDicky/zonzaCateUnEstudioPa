@@ -52,6 +52,10 @@ input + p {
     height: 0;
 }
 
+.warning {
+    color: red;
+}
+
 input.invalid + p {
     opacity: 1;
     height: auto;
