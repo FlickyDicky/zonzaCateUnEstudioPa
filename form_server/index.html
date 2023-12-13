@@ -10,9 +10,9 @@
     <body>
         <form method="get" onsubmit="saveLocal()">
             <h1>Welcome! Let's get registered.</h1>
-            <p class="warning"></p>
             <input
                 type="text"
+                data-user
                 name="name"
                 id="name"
                 placeholder="User Name"
@@ -21,6 +21,7 @@
             <p>Name should start with an uppercase letter</p>
             <input
                 type="text"
+                data-user
                 name="surName"
                 id="surname"
                 placeholder="Surname"
@@ -32,6 +33,7 @@
             </p>
             <input
                 type="text"
+                data-user
                 name="idCard"
                 id="idcard"
                 placeholder="ID card Number"
@@ -43,6 +45,7 @@
             </p>
             <input
                 type="text"
+                data-user
                 name="birthDate"
                 id="birthdate"
                 placeholder="Date of birth"
@@ -51,6 +54,7 @@
             <p>Date format dd/mm/yyyy</p>
             <input
                 type="text"
+                data-user
                 name="postalCode"
                 id="postalcode"
                 placeholder="Postal Code"
@@ -59,6 +63,7 @@
             <p>Postal Code should be values between 01000 and 52999</p>
             <input
                 type="text"
+                data-user
                 name="eMail"
                 id="email"
                 placeholder="E-mail"
@@ -67,6 +72,7 @@
             <p>Insert a valid email</p>
             <input
                 type="text"
+                data-user
                 name="spanishNumber"
                 id="phonenumber"
                 placeholder="Telephone Number"
@@ -75,6 +81,7 @@
             <p>Phone numbers should start with 8 or 9</p>
             <input
                 type="text"
+                data-user
                 name="mobileNumber"
                 id="mobilenumber"
                 placeholder="Mobile Number"
@@ -83,6 +90,7 @@
             <p>Phone numbers should start with 6 or 7</p>
             <input
                 type="text"
+                data-user
                 name="iban"
                 id="iban"
                 placeholder="IBAN"
@@ -94,6 +102,7 @@
             </p>
             <input
                 type="text"
+                data-user
                 name="cardNumber"
                 id="cardnumber"
                 placeholder="Card Number"
@@ -102,6 +111,7 @@
             <p>Card Number should be 16 numeric characters</p>
             <input
                 type="password"
+                data-user
                 name="password"
                 id="password"
                 placeholder="Password"
@@ -113,6 +123,7 @@
             </p>
             <input
                 type="password"
+                data-user
                 name="passwordRepeat"
                 id="passwordRepeat"
                 placeholder="Retype Password"
@@ -132,8 +143,17 @@
                 value="RETRIEVE JSON"
             />
             <input type="button" onclick="getUserPhp()" value="RETRIEVE PHP" />
-            <input type="button" onclick="getUserDb(userId.value)" value="RETRIEVE DB" />
-            <input type="text" id="userId" placeholder="Type an ID to search in database." />
+            <input
+                type="button"
+                onclick="getUserDb(userId.value)"
+                value="RETRIEVE DB"
+            />
+            <input
+            type="text"
+            id="userId"
+            placeholder="Type an ID to search in database."
+            />
+            <span class="warning"></span>
         </form>
     </body>
 </html>

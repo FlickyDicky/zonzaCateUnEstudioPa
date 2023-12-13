@@ -27,6 +27,7 @@ form {
     display: flex;
     flex-direction: column;
     box-shadow: 5px 5px 5px rgb(173, 173, 173);
+    transition: border 1000ms;
 }
 
 form h1 {

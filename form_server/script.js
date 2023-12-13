@@ -13,7 +13,7 @@ const regEx = {
 };
 
 const inputs = document.querySelectorAll(
-    'input[type="text"], input[type="password"]'
+    'input[data-user]'
 );
 
 // attach input events to inputs
@@ -145,23 +145,23 @@ function getUserPhp() {
 
 
 // get user from userdb.php from a databse
-
 function getUserDb(dni) {
     if (dni == "") {
         document.querySelector(".warning").innerHTML = "You must insert an ID";
+        document.querySelector("form").style.borderColor ="red";
         return;
     }
     document.querySelector(".warning").innerHTML = "";
+    document.querySelector("form").style.borderColor ="rgb(114, 168, 250)";
     let newRequest = new XMLHttpRequest();
     newRequest.open("GET", "http://etilico.com/userdb.php?q=" + dni, true);
     newRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
             const myObj = JSON.parse(this.responseText);
-            let userData = Object.values(myObj);
+            let userData = Object.values(myObj[0]);
             insertDataInInput(userData);
         } else {
-            console.log("No funciona");
+            console.error("Error: " + this.status + " - " + this.statusText);
         }
     };
     sendRequest(newRequest);
