@@ -12,9 +12,8 @@ const regEx = {
     password: /^[a-zA-Z0-9]{11}[@_\.\-]$/, // Alphanumeric characters and certain symbols, length 11
 };
 
-const inputs = document.querySelectorAll(
-    'input[data-user]'
-);
+const inputs = document.querySelectorAll("input[data-user]");
+const submitButtons = document.querySelectorAll("input[data-submit]");
 
 // attach input events to inputs
 inputs.forEach((input) => {
@@ -45,16 +44,36 @@ inputs.forEach((input) => {
 // get valid fields, to disable button or enable the button
 function enableButton() {
     const validInputs = document.querySelectorAll("input[class='valid']");
-    submitCredentials.disabled = validInputs.length !== 12;
+    submitButtons.forEach((b) => {
+        b.disabled = validInputs.length !== 12;
+    });
 }
 
 // validation function for comparing regex
 function validate(field, regex) {
-    if (regex.test(field.value)) {
-        field.className = "valid";
-    } else {
-        field.className = "invalid";
+    document.querySelector(".success").innerHTML = "";
+    document.querySelector("form").style.borderColor = "rgb(114, 168, 250)";
+    if (regex && regex.test && typeof regex.test === "function") {
+        if (regex.test(field.value)) {
+            field.className = "valid";
+        } else {
+            field.className = "invalid";
+        }
     }
+}
+
+// apply success styles
+function applySuccesStyles() {
+    setTimeout(() => {
+        inputs.forEach((input) => {
+            input.value = "";
+            input.classList.remove("valid");
+        });
+        document.querySelector(".success").innerHTML =
+            "User created succesfully";
+        document.querySelector(".success").style.opacity = 1;
+        document.querySelector("form").style.borderColor = "green";
+    }, 10);
 }
 
 // validate password similarities
@@ -66,13 +85,19 @@ function validatePassword(password, repeatedPassword) {
     passwordRepeat.classList.toggle("invalid", !isValid);
 }
 
-// save the input data to an array and in localStorage
-function saveLocal() {
+// Prepare the user object to save and manage the success
+function preparedUser() {
     let data = [];
     inputs.forEach((input) => {
         data.push(input.value);
     });
-    localStorage.setItem("credentials", JSON.stringify(data));
+    applySuccesStyles();
+    return data;
+}
+
+// save the input data to an array and in localStorage
+function saveLocal() {
+    localStorage.setItem("credentials", JSON.stringify(preparedUser()));
 }
 
 // retrieve the data from localStorage
@@ -129,12 +154,22 @@ function getUserJson() {
     sendRequest(newRequest);
 }
 
+// get user from session storage
+
 // retrieve the data from our user.php file
 function getUserPhp() {
     let newRequest = new XMLHttpRequest();
     newRequest.open("GET", "http://etilico.com/user.php", true);
     newRequest.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
+        const storedUser = sessionStorage.getItem("userData");
+
+        if (storedUser) {
+            const myObj = JSON.parse(storedUser);
+            // Use the data as needed
+            let userData = Object.values(myObj);
+
+            insertDataInInput(userData);
+        } else if (this.readyState == 4 && this.status == 200) {
             const myObj = JSON.parse(this.responseText);
             let userData = Object.values(myObj);
             insertDataInInput(userData);
@@ -143,26 +178,70 @@ function getUserPhp() {
     sendRequest(newRequest);
 }
 
+// post user to php file
+function postUserPhp() {
+    var newRequest = new XMLHttpRequest();
+    newRequest.open("POST", "http://etilico.com/user.php", true);
+    let user = "user=" + JSON.stringify(preparedUser());
+
+    //add an HTTP header with setRequestHeader(). Specify the data you want to send in the send() method:
+    newRequest.setRequestHeader(
+        "Content-type",
+        "application/x-www-form-urlencoded"
+    );
+
+    newRequest.onload = function () {
+        console.log(JSON.stringify(preparedUser()));
+        sessionStorage.setItem("userData", JSON.stringify(preparedUser()));
+    };
+
+    newRequest.send(user);
+}
 
 // get user from userdb.php from a databse
 function getUserDb(dni) {
     if (dni == "") {
         document.querySelector(".warning").innerHTML = "You must insert an ID";
-        document.querySelector("form").style.borderColor ="red";
+        document.querySelector(".warning").style.opacity = 1;
+        document.querySelector("form").style.borderColor = "red";
         return;
     }
     document.querySelector(".warning").innerHTML = "";
-    document.querySelector("form").style.borderColor ="rgb(114, 168, 250)";
+    document.querySelector("form").style.borderColor = "rgb(114, 168, 250)";
     let newRequest = new XMLHttpRequest();
     newRequest.open("GET", "http://etilico.com/userdb.php?q=" + dni, true);
     newRequest.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            const myObj = JSON.parse(this.responseText);
-            let userData = Object.values(myObj[0]);
-            insertDataInInput(userData);
-        } else {
-            console.error("Error: " + this.status + " - " + this.statusText);
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                const myObj = JSON.parse(this.responseText);
+                let userData = Object.values(myObj[0]);
+                insertDataInInput(userData);
+            } else {
+                console.error("Error parsing JSON:", error);
+                console.error(
+                    "Error: " + this.status + " - " + this.statusText
+                );
+            }
         }
     };
     sendRequest(newRequest);
+}
+
+// Post user to a Database
+function postUserDb() {
+    var newRequest = new XMLHttpRequest();
+    newRequest.open("POST", "http://etilico.com/userdb.php", true);
+    let user = "user=" + JSON.stringify(preparedUser());
+
+    //add an HTTP header with setRequestHeader(). Specify the data you want to send in the send() method:
+    newRequest.setRequestHeader(
+        "Content-type",
+        "application/x-www-form-urlencoded"
+    );
+
+    newRequest.onload = function () {
+        console.log(this.responseText);
+    };
+
+    newRequest.send(user);
 }

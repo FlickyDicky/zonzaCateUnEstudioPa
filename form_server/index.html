@@ -131,7 +131,8 @@
             />
             <p>Doesn't match the previous password</p>
 
-            <input type="submit" id="submitCredentials" value="SAVE" disabled />
+            <input type="submit" data-submit disabled value="SAVE" />
+            <span class="success"></span>
             <input
                 type="button"
                 onclick="getUserLocalstorage()"
@@ -142,18 +143,36 @@
                 onclick="getUserJson()"
                 value="RETRIEVE JSON"
             />
-            <input type="button" onclick="getUserPhp()" value="RETRIEVE PHP" />
+            <input
+                type="button"
+                onclick="getUserPhp()"
+                value="RETRIEVE PHP"
+            />
+            <input
+                type="button"
+                data-submit
+                disabled
+                onclick="postUserPhp()"
+                value="POST TO PHP SERVER"
+            />
             <input
                 type="button"
                 onclick="getUserDb(userId.value)"
-                value="RETRIEVE DB"
+                value="RETRIEVE DB (INSERT ID BELLOW)"
             />
             <input
-            type="text"
-            id="userId"
-            placeholder="Type an ID to search in database."
+                type="text"
+                id="userId"
+                placeholder="Type an ID to search in database."
             />
             <span class="warning"></span>
+            <input
+                data-submit
+                disabled
+                type="button"
+                onclick="postUserDb()"
+                value="POST TO DATABASE"
+            />
         </form>
     </body>
 </html>

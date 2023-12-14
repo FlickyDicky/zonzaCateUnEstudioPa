@@ -17,6 +17,8 @@ h1 {
     padding-bottom: 1em;
 }
 
+
+
 form {
     background: var(--backgroud-color);
     border: 3px solid rgb(114, 168, 250);
@@ -55,6 +57,12 @@ input + p {
 
 .warning {
     color: red;
+    opacity: 0;
+}
+
+.success {
+    color: green;
+    opacity: 0;
 }
 
 input.invalid + p {
