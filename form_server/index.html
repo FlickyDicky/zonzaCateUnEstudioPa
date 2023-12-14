@@ -10,169 +10,176 @@
     <body>
         <form method="get" onsubmit="saveLocal()">
             <h1>Welcome! Let's get registered.</h1>
-            <input
-                type="text"
-                data-user
-                name="name"
-                id="name"
-                placeholder="User Name"
-                required
-            />
-            <p>Name should start with an uppercase letter</p>
-            <input
-                type="text"
-                data-user
-                name="surName"
-                id="surname"
-                placeholder="Surname"
-                required
-            />
-            <p>
-                Surnames should start with uppercase letters separated by a
-                space
-            </p>
-            <input
-                type="text"
-                data-user
-                name="idCard"
-                id="idcard"
-                placeholder="ID card Number"
-                required
-            />
-            <p>
-                ID: Optional 'x', 'y', or 'z' at the beginning, followed by 8
-                digits and ending with a letter
-            </p>
-            <input
-                type="text"
-                data-user
-                name="birthDate"
-                id="birthdate"
-                placeholder="Date of birth"
-                required
-            />
-            <p>Date format dd/mm/yyyy</p>
-            <input
-                type="text"
-                data-user
-                name="postalCode"
-                id="postalcode"
-                placeholder="Postal Code"
-                required
-            />
-            <p>Postal Code should be values between 01000 and 52999</p>
-            <input
-                type="text"
-                data-user
-                name="eMail"
-                id="email"
-                placeholder="E-mail"
-                required
-            />
-            <p>Insert a valid email</p>
-            <input
-                type="text"
-                data-user
-                name="spanishNumber"
-                id="phonenumber"
-                placeholder="Telephone Number"
-                required
-            />
-            <p>Phone numbers should start with 8 or 9</p>
-            <input
-                type="text"
-                data-user
-                name="mobileNumber"
-                id="mobilenumber"
-                placeholder="Mobile Number"
-                required
-            />
-            <p>Phone numbers should start with 6 or 7</p>
-            <input
-                type="text"
-                data-user
-                name="iban"
-                id="iban"
-                placeholder="IBAN"
-                required
-            />
-            <p>
-                IBAN should be as follows starting with 'ES' followed by 22
-                digits
-            </p>
-            <input
-                type="text"
-                data-user
-                name="cardNumber"
-                id="cardnumber"
-                placeholder="Card Number"
-                required
-            />
-            <p>Card Number should be 16 numeric characters</p>
-            <input
-                type="password"
-                data-user
-                name="password"
-                id="password"
-                placeholder="Password"
-                required
-            />
-            <p>
-                Must be 12 characters long including one of the following at the
-                end (@) (_) (.) (-)
-            </p>
-            <input
-                type="password"
-                data-user
-                name="passwordRepeat"
-                id="passwordRepeat"
-                placeholder="Retype Password"
-                required
-            />
-            <p>Doesn't match the previous password</p>
 
-            <input type="submit" data-submit disabled value="SAVE" />
-            <span class="success"></span>
-            <input
-                type="button"
-                onclick="getUserLocalstorage()"
-                value="RETRIEVE LOCAL"
-            />
-            <input
-                type="button"
-                onclick="getUserJson()"
-                value="RETRIEVE JSON"
-            />
-            <input
-                type="button"
-                onclick="getUserPhp()"
-                value="RETRIEVE PHP"
-            />
-            <input
-                type="button"
-                data-submit
-                disabled
-                onclick="postUserPhp()"
-                value="POST TO PHP SERVER"
-            />
-            <input
-                type="button"
-                onclick="getUserDb(userId.value)"
-                value="RETRIEVE DB (INSERT ID BELLOW)"
-            />
-            <input
-                type="text"
-                id="userId"
-                placeholder="Type an ID to search in database."
-            />
-            <span class="warning"></span>
-            <input
-                data-submit
-                disabled
-                type="button"
-                onclick="postUserDb()"
-                value="POST TO DATABASE"
-            />
+            <div class="container">
+                <div class="inputs">
+                    <input
+                        type="text"
+                        data-user
+                        name="name"
+                        id="name"
+                        placeholder="User Name"
+                        required
+                    />
+                    <p>Name should start with an uppercase letter</p>
+                    <input
+                        type="text"
+                        data-user
+                        name="surName"
+                        id="surname"
+                        placeholder="Surname"
+                        required
+                    />
+                    <p>
+                        Surnames should start with uppercase letters separated
+                        by a space
+                    </p>
+                    <input
+                        type="text"
+                        data-user
+                        name="idCard"
+                        id="idcard"
+                        placeholder="ID card Number"
+                        required
+                    />
+                    <p>
+                        ID: Optional 'x', 'y', or 'z' at the beginning, followed
+                        by 8 digits and ending with a letter
+                    </p>
+                    <input
+                        type="text"
+                        data-user
+                        name="birthDate"
+                        id="birthdate"
+                        placeholder="Date of birth"
+                        required
+                    />
+                    <p>Date format dd/mm/yyyy</p>
+                    <input
+                        type="text"
+                        data-user
+                        name="postalCode"
+                        id="postalcode"
+                        placeholder="Postal Code"
+                        required
+                    />
+                    <p>Postal Code should be values between 01000 and 52999</p>
+                    <input
+                        type="text"
+                        data-user
+                        name="eMail"
+                        id="email"
+                        placeholder="E-mail"
+                        required
+                    />
+                    <p>Insert a valid email</p>
+                    <input
+                        type="text"
+                        data-user
+                        name="spanishNumber"
+                        id="phonenumber"
+                        placeholder="Telephone Number"
+                        required
+                    />
+                    <p>Phone numbers should start with 8 or 9</p>
+                    <input
+                        type="text"
+                        data-user
+                        name="mobileNumber"
+                        id="mobilenumber"
+                        placeholder="Mobile Number"
+                        required
+                    />
+                    <p>Phone numbers should start with 6 or 7</p>
+                    <input
+                        type="text"
+                        data-user
+                        name="iban"
+                        id="iban"
+                        placeholder="IBAN"
+                        required
+                    />
+                    <p>
+                        IBAN should be as follows starting with 'ES' followed by
+                        22 digits
+                    </p>
+                    <input
+                        type="text"
+                        data-user
+                        name="cardNumber"
+                        id="cardnumber"
+                        placeholder="Card Number"
+                        required
+                    />
+                    <p>Card Number should be 16 numeric characters</p>
+                    <input
+                        type="password"
+                        data-user
+                        name="password"
+                        id="password"
+                        placeholder="Password"
+                        required
+                    />
+                    <p>
+                        Must be 12 characters long including one of the
+                        following at the end (@) (_) (.) (-)
+                    </p>
+                    <input
+                        type="password"
+                        data-user
+                        name="passwordRepeat"
+                        id="passwordRepeat"
+                        placeholder="Retype Password"
+                        required
+                    />
+                    <p>Doesn't match the previous password</p>
+                </div>
+                <div class="inputs">
+                    <input type="submit" data-submit disabled value="SAVE" />
+                    <input
+                        type="button"
+                        onclick="getUserLocalstorage()"
+                        value="RETRIEVE LOCAL"
+                    />
+                    <input
+                        type="button"
+                        onclick="getUserJson()"
+                        value="RETRIEVE JSON"
+                    />
+                    <input
+                        type="button"
+                        onclick="getUserPhp()"
+                        value="RETRIEVE PHP"
+                    />
+                    <input
+                        type="button"
+                        data-submit
+                        disabled
+                        onclick="postUserPhp()"
+                        value="POST TO PHP SERVER"
+                    />
+                    <input
+                        type="button"
+                        onclick="getUserDb(userId.value)"
+                        value="RETRIEVE DB (INSERT ID BELLOW)"
+                    />
+                    <input
+                        type="text"
+                        id="userId"
+                        placeholder="Type an ID to search in database."
+                    />
+                    <input
+                        data-submit
+                        disabled
+                        type="button"
+                        onclick="postUserDb()"
+                        value="POST TO DATABASE"
+                    />
+                    <span class="warning"></span>
+                    <span class="success"></span>
+                    <span class="retrieved"></span>
+                </div>
+            </div>
         </form>
     </body>
 </html>

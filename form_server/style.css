@@ -28,8 +28,21 @@ form {
     margin: 1em auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
     box-shadow: 5px 5px 5px rgb(173, 173, 173);
-    transition: border 1000ms;
+    transition: border 500ms;
+}
+
+.container {
+    display: flex;
+    gap: 1em;
+}
+
+.inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 form h1 {
@@ -61,6 +74,11 @@ input + p {
 }
 
 .success {
+    color: green;
+    opacity: 0;
+}
+
+.retrieved {
     color: green;
     opacity: 0;
 }

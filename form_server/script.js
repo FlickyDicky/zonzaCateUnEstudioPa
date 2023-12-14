@@ -51,6 +51,7 @@ function enableButton() {
 
 // validation function for comparing regex
 function validate(field, regex) {
+    document.querySelector(".warning").innerHTML = "";
     document.querySelector(".success").innerHTML = "";
     document.querySelector("form").style.borderColor = "rgb(114, 168, 250)";
     if (regex && regex.test && typeof regex.test === "function") {
@@ -58,6 +59,7 @@ function validate(field, regex) {
             field.className = "valid";
         } else {
             field.className = "invalid";
+            document.querySelector(".retrieved").innerHTML = "";
         }
     }
 }
@@ -69,8 +71,10 @@ function applySuccesStyles() {
             input.value = "";
             input.classList.remove("valid");
         });
+        enableButton();
+        document.querySelector(".retrieved").innerHTML = "";
         document.querySelector(".success").innerHTML =
-            "User created succesfully";
+            "User created successfully";
         document.querySelector(".success").style.opacity = 1;
         document.querySelector("form").style.borderColor = "green";
     }, 10);
@@ -87,6 +91,7 @@ function validatePassword(password, repeatedPassword) {
 
 // Prepare the user object to save and manage the success
 function preparedUser() {
+    document.querySelector(".warning").innerHTML = "";
     let data = [];
     inputs.forEach((input) => {
         data.push(input.value);
@@ -115,6 +120,9 @@ function getUserLocalstorage() {
         validatePassword(password.value, passwordRepeat.value);
         enableButton();
     });
+    document.querySelector(".retrieved").innerHTML =
+        "Retrieved user successfully";
+    document.querySelector(".retrieved").style.opacity = 1;
 }
 
 // Retrieve the data
@@ -137,7 +145,11 @@ function sendRequest(request) {
     request.send();
     request.onerror = function () {
         console.log("Connection error");
+        return;
     };
+    document.querySelector(".retrieved").innerHTML =
+        "Retrieved user successfully";
+    document.querySelector(".retrieved").style.opacity = 1;
 }
 
 // retrieve the data from our user.json file
@@ -201,7 +213,10 @@ function postUserPhp() {
 // get user from userdb.php from a databse
 function getUserDb(dni) {
     if (dni == "") {
-        document.querySelector(".warning").innerHTML = "You must insert an ID";
+        document.querySelector(".success").innerHTML = "";
+        document.querySelector(".retrieved").innerHTML = "";
+        document.querySelector(".warning").innerHTML =
+            "You must insert an ID to search in database";
         document.querySelector(".warning").style.opacity = 1;
         document.querySelector("form").style.borderColor = "red";
         return;
