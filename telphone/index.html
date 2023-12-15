@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Phone</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="button">1</div>
+            <div class="button">2</div>
+            <div class="button">3</div>
+        </div>
+        <div class="row">
+            <div class="button">4</div>
+            <div class="button">5</div>
+            <div class="button">6</div>
+        </div>
+        <div class="row">
+            <div class="button">7</div>
+            <div class="button">8</div>
+            <div class="button">9</div>
+        </div>
+        <div class="row">
+            <button class="button" data-redial>R</button>
+            <div class="button">0</div>
+            <div class="button" data-cancel>H</div>
+        </div>
+        <div class="row">
+            <div class="button" data-phone>Call</div>
+        </div>
+        <div class="log">
+        </div>
+        <div class="row" data-display-timer>
+            <input type="text" data-display placeholder="Phone number..">Time: <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
+        </div>
+    </div>
+</body>
+<script src="script.js" defer></script>
+</html>
