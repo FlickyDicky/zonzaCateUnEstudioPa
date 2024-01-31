@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4em;
+  background-color: rgb(221, 221, 221);
+}
+
+.container {
+    position: relative;
+}
+
+#ball {
+  position: relative;
+  cursor: pointer;
+  width: 400px; /* Adjust the size as needed */
+  aspect-ratio: 1/1;
+  background: url("16079.jpg");
+  border-radius: 50%;
+  background-size: cover;
+  background-position: 0%;
+  transition: transform 500ms ease-in-out;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.822),
+    inset 20px 10px 20px rgba(192, 192, 192, 0.178); /* Inset shadow */
+}
+
+#happy-msg {
+  font-size: 1.4rem;
+  padding: 1rem;
+  text-align: center;
+  width: 40rem;
+  height: 10rem;
+  z-index: 1;
+  border-radius: 0.6rem;
+}
+
+#refresh {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#ball:hover {
+  transform: translateY(-10px);
+}
+
+.spin-animation {
+    animation: shake 1s forwards ease-in-out, spin 6s infinite linear .6s;
+}
+
+.no-hover {
+    pointer-events: none;
+}
+
+.text-opacity-animation {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    animation: text-opacity 1s;
+}
+
+
+@keyframes text-opacity {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+  100% {
+    background-position: 100%;
+  }
+}
+
+
+@keyframes shake {
+  0% {
+    transform: translateY(-10px);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px) rotate(-5deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px) rotate(5deg);
+  }
+}
