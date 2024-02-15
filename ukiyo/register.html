@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="script.js" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <title>Ukiyo</title>
+    </head>
+    <body>
+        <!-- nav with, home, products, about, sign in/register, cart and Language -->
+        <nav>
+            <img class="logo" src="img/ukiyo-logo-min.png" alt="Ukiyo Logo" />
+            <ul>
+                <li><p><a href="index.html">Home</a></p></li>
+                <li class="dropdown-button">
+                    <p>Products</p>
+                    <ul class="dropdown-menu" style="display: none">
+                        <li class="product"><p>Blender</p></li>
+                        <hr style="opacity: 0.2" />
+                        <li class="product"><p>Microwave</p></li>
+                        <hr style="opacity: 0.2" />
+                        <li class="product"><p>Toaster</p></li>
+                        <hr style="opacity: 0.2" />
+                        <li class="product"><p>Television</p></li>
+                        <hr style="opacity: 0.2" />
+                        <li class="product"><p>Washing Machine</p></li>
+                    </ul>
+                </li>
+                <!-- List of the products dropdown menu -->
+
+                <li><p>About</p></li>
+                <li id="login-btn"><p><a href="login.html">Sign in/Register</a></p></li>
+                <li><p>Cart</p></li>
+                <li><p>Language</p></li>
+            </ul>
+        </nav>
+        <!-- product div carrousell -->
+        <div class="product-carousel">
+            <div class="card">
+                <img src="img/Blender.png" alt="Ukiyo Logo" />
+            </div>
+            <div class="card">
+                <img src="img/microwave.png" alt="Ukiyo Logo" />
+            </div>
+            <div class="card">
+                <img src="img/toaster-min.png" alt="Ukiyo Logo" />
+            </div>
+            <div class="card">
+                <img src="img/tv-min.png" alt="Ukiyo Logo" />
+            </div>
+            <div class="card">
+                <img src="img/washing-machine-min.png" alt="Ukiyo Logo" />
+            </div>
+        </div>
+
+        <!-- Main div where everything will be displayed -->
+        <main>
+            <!-- register form -->
+            <div class="register-form">
+                <form action="submit">
+                    <h1>Register</h1>
+                    <input id="name" type="text" placeholder="Username" />
+                    <input id="id" type="text" placeholder="ID" />
+                    <input id="email" type="text" placeholder="Email" />
+                    <input id="bankAccount" type="text" placeholder="Bank Card Number" />
+                    <input id="phoneNumber" type="text" placeholder="Phone Number" />
+                    <button>Register</button>
+                    <p>Already have an account? <a href="login.html">Sign in</a></p>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>

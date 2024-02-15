@@ -1,0 +1,65 @@
+1)Page Structure HTML:(0,5p)
+
+  It has to have at least four divisions, with the following functions:
+ 1.1)Menu division at the top horizontally.
+ 1.2)Division for products or promotions : They must be continuously sliding(carousel).
+ 1.3) Main division for detailed information display.
+ 1.4) Other information division.
+
+
+2) MENU DIVISION with a LOGO has to offer the following options:(0,5p)
+ 2.1) Home: A link that reloads the initial web.
+ 2.2) Products: Shows in the Main Division a list of at least five products(dropdown  menu)
+ 2.3) About: Shows information in the Main Division about the Company.
+ 2.4) Register/Sign in: Lets us sign in to the web or for registering .
+ 2.5) Cart: Shows the content of our shopping cart in the Main division and confirms or cancel the order.
+ 2.6) Language: Lets you switch the languages formSpanish to English (or more).
+
+
+3)  PRODUCTS DIVISION:(0,5p)
+ 3.1) At least five products are sliding automatically every couple of  seconds.
+ 3.2) When we click on one product  the information is shown in the main division.
+ 3.3) The information must come from a data base in a server (picture, name,desription,price, availability...)
+
+
+4) MAIN DIVISION(0,5p)
+ 4.1) Shows individual information of recommended products.We can add the product to the cart only from there.
+ 4.2)Shows contents of shopping cart with their prices and amounts with the TOTAL price. We can discard products only from there.
+ 4.3) Shows list of other products.
+ 4.4)Shows signin form.
+
+
+5) FINAL DIVISION
+ 5.1) Copyright information and other (company address, email, telephone nmber)
+
+
+6) FORM using at least 5 fields with one regular expression for each.(1p)
+
+6.1) Name, Id, e-mail, bank account , phone number
+
+
+7)USE AJAX for retrieving information form the server. It must include at least a DATA BASE with two TABLES (one for products and one for customers). (2p)
+The server can be any of your own using PHP and MySQL and must include:
+
+
+ 7.1) First table for the products (minimum of them with name, price, availability and picture).(1p)
+ 7.2) Second Table for user with name, id as key, the date and other data from the sign up form.(1p)
+
+
+8)YOU MUST USE JQUERY (2p)
+
+8.1) for the SLIDER (1p)
+
+8.2) other effects (dropdown menu).(0.5)
+
+8.3)  Ajax Connections (0,5p)
+
+9) USE Vue for using at least  of the following:(2p)
+ 9.1) Component using Templates(See codepen example 8)(0,25)
+ 9.2) Directives (conditional, loops, data binding,events, two-way data binding)(1p)
+ 9.3) Computed properties(0,25)
+ 9.4) Events with methods(0,25)
+9.5) Dynamic CSS.(0,25)
+
+10) Code is well commented (in English for some), indented and optimized and user experience. (1p)
+
